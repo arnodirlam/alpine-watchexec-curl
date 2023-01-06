@@ -1,0 +1,29 @@
+name: Build and push Docker image
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 10 * * 2'
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      # Check out the repository
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      # Build the Docker image
+      - name: Build Docker image
+        run: |
+          docker build -t arnodirlam/alpine-watchexec-curl .
+
+      # Log in to Docker Hub
+      - name: Log in to Docker Hub
+        run: echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
+
+      # Push the Docker image to Docker Hub
+      - name: Push Docker image
+        run: docker push arnodirlam/alpine-watchexec-curl
