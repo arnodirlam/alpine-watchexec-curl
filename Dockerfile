@@ -12,3 +12,8 @@ RUN apk add --no-cache certbot
 FROM latest AS terraform
 
 RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community terraform
+
+
+FROM terraform AS terraform-openssl
+
+RUN apk add --no-cache openssl

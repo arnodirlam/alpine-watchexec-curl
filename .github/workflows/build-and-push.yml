@@ -21,6 +21,7 @@ jobs:
           docker build --target latest -t arnodirlam/alpine-watchexec-curl:latest .
           docker build --target certbot -t arnodirlam/alpine-watchexec-curl:certbot .
           docker build --target terraform -t arnodirlam/alpine-watchexec-curl:terraform .
+          docker build --target terraform-openssl -t arnodirlam/alpine-watchexec-curl:terraform-openssl .
 
       # Log in to Docker Hub
       - name: Log in to Docker Hub
@@ -32,3 +33,4 @@ jobs:
           docker push arnodirlam/alpine-watchexec-curl:latest
           docker push arnodirlam/alpine-watchexec-curl:certbot
           docker push arnodirlam/alpine-watchexec-curl:terraform
+          docker push arnodirlam/alpine-watchexec-curl:terraform-openssl
